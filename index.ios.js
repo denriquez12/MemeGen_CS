@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -16,38 +10,148 @@ export default class MemeGen_CS extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
+        {this.displayTitle()}
+        {this.startImg()}
+        <View style={[styles.genSaveBttnsWrapper, this.border('red')]}>
+          {this.startGener8Bttn()}
+          {this.startSaveBttn()}
+        </View>
+        <View style={[styles.settingBttnsWrapper, this.border('yellow')]}>
+          {this.startRandBttn()}
+          {this.startMyMemeBttn()}
+        </View>
+      </View>
+    );
+  }
+
+  //Start of helper functions
+  displayTitle() {
+    return (
+      <View style={[styles.titleWrapper, this.border('green')]}>
+        <Text style={styles.title}>
+          MEME GENERATOR
         </Text>
       </View>
     );
   }
-}
+  startImg() {
+    return (
+      <View style={[styles.mainImgWrapper, this.border('blue')]}>
+        <Text>
+          MEME IMG
+        </Text>
+      </View>
+    );
+  }
+  startGener8Bttn() {
+    return (
+      <View style={styles.actionBttn}>
+        <Text>
+          GENER8
+        </Text>
+      </View>
+    );
+  }
+  startSaveBttn() {
+    return (
+      <View style={styles.actionBttn}>
+        <Text>
+          SAVE
+        </Text>
+      </View>
+    );
+  }
+  startRandBttn() {
+    return (
+      <View style={styles.randBttn}>
+        <Text>
+          Randimizer
+        </Text>
+      </View>
+    );
+  }
+  startMyMemeBttn() {
+    return (
+      <View style={styles.myMemeBttn}>
+        <Text>
+          MyMeme
+        </Text>
+      </View>
+    );
+  }
+  //Should remove when safe and done
+  border(color) {
+    return {
+      borderColor: color,
+      borderWidth: 5
+    };
+  }
 
-const styles = StyleSheet.create({
+} //End of Main class
+
+//Styles
+let styles = StyleSheet.create({
+  /////////////////////////
+  ///// Section Styles ////
+  /////////////////////////
   container: {
     flex: 1,
-    justifyContent: 'center',
+    backgroundColor: '#5499C7', //light blue
+  },
+  titleWrapper: { //Green
+    flex: 1,
+    marginTop: 25,  //Look back at this since hardset
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    justifyContent: 'center'
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  mainImgWrapper: { //Blue
+    flex: 8,
+    alignItems: 'center',
+    justifyContent: 'flex-start'
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  genSaveBttnsWrapper: {  //Red
+    flex: 3,
+    alignItems: 'center',
+    justifyContent: 'space-around'
   },
+  settingBttnsWrapper: {  //Yellow
+    flexDirection: 'row',
+    flex: 2,
+    alignItems: 'stretch',
+  },
+  /////////////////////////
+  //// Button styles //////
+  /////////////////////////
+  actionBttn: {
+    borderWidth: 2,
+    width: 200,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  randBttn: {
+    flex: 1,
+    borderWidth: 2,
+    borderRightWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  myMemeBttn: {
+    flex: 1,
+    borderWidth: 2,
+    borderLeftWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  //////////////////////////
+  //// Text Styles /////////
+  //////////////////////////
+  title: {
+    fontSize: 28,
+    justifyContent: 'center'
+  }
+
+
 });
 
 AppRegistry.registerComponent('MemeGen_CS', () => MemeGen_CS);
