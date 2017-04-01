@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import MainMeme from './src/components/MainMeme';
 import {
   AppRegistry,
   StyleSheet,
@@ -11,7 +12,7 @@ export default class MemeGen_CS extends Component {
     return (
       <View style={styles.container}>
         {this.displayTitle()}
-        {this.startImg()}
+        <MainMeme />
         <View style={[styles.genSaveBttnsWrapper, this.border('red')]}>
           {this.startGener8Bttn()}
           {this.startSaveBttn()}
@@ -30,15 +31,6 @@ export default class MemeGen_CS extends Component {
       <View style={[styles.titleWrapper, this.border('green')]}>
         <Text style={styles.title}>
           MEME GENERATOR
-        </Text>
-      </View>
-    );
-  }
-  startImg() {
-    return (
-      <View style={[styles.mainImgWrapper, this.border('blue')]}>
-        <Text>
-          MEME IMG
         </Text>
       </View>
     );
@@ -103,11 +95,6 @@ let styles = StyleSheet.create({
     marginTop: 25,  //Look back at this since hardset
     alignItems: 'center',
     justifyContent: 'center'
-  },
-  mainImgWrapper: { //Blue
-    flex: 8,
-    alignItems: 'center',
-    justifyContent: 'flex-start'
   },
   genSaveBttnsWrapper: {  //Red
     flex: 3,
