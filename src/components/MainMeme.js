@@ -9,19 +9,16 @@ import {
 export default class MainMeme extends Component {
   render() {
     return (
-    <View style={[styles.mainImgWrapper, this.border('blue')]}>
-      <Text>
-        MEME IMG
-      </Text>
-    </View>
+      this.startMemeImg()
     );
   }
-  //Should remove when safe and done
-  border(color) {
-    return {
-      borderColor: color,
-      borderWidth: 5
-    };
+  startMemeImg() {
+    return (
+       <View style={styles.mainImgWrapper}>
+          <Text style={styles.img}>
+            MEME IMG
+          </Text>
+        </View>);
   }
 } //end of Meme
 
@@ -33,8 +30,12 @@ export default class MainMeme extends Component {
     mainImgWrapper: { //Blue
       flex: 8,
       alignItems: 'center',
-      justifyContent: 'flex-start'
+      justifyContent: 'center'
     },
+    /////////////////////////
+    ///// Text/IMG Styles ////
+    /////////////////////////
+
   });
 
   //AppRegistry.registerComponent('MainMeme', () => MainMeme); //Have to double check if this is needed
