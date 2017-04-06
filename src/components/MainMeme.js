@@ -16,11 +16,11 @@ export default class MainMeme extends Component {
   render() {
     return (
       <View style={{flex: 11}}>
-      {this.startMemeImg()}
-      <View style={styles.genSaveBttnsWrapper}>
-        {this.startGenBttn()}
-        {this.startSaveBttn()}
-      </View>
+        {this.startMemeImg()}
+        <View style={styles.genSaveBttnsWrapper}>
+          {this.startGenBttn()}
+          {this.startSaveBttn()}
+          </View>
       </View>
     );
   }
@@ -28,7 +28,7 @@ export default class MainMeme extends Component {
   //ADDED
   startGenBttn() {
     return (
-      <TouchableOpacity onPress={() => this.generateAction()} style={styles.actionBttn}>
+      <TouchableOpacity onPress={() => this.fetchImg()} style={styles.actionBttn}>
         <Text style={styles.textStyle}>
           GENER8
         </Text>
@@ -44,11 +44,6 @@ export default class MainMeme extends Component {
       </TouchableOpacity>
     );
   }
-  generateAction = () => {
-    let img = 'https://funnyasduck.net/wp-content/uploads/2016/04/funny-batman-pics-comics-animal-pictures.jpg';
-    this.setState({ imgURL: img });
-    console.log('Generate Was Pressed')
-  }
   saveAction() {
     console.log('Save Was Pressed')
   }
@@ -61,14 +56,21 @@ export default class MainMeme extends Component {
             source={{uri: this.state.imgURL}}/>
       </View>);
   }
-
   fetchImg() {
-        return ('https://s-media-cache-ak0.pinimg.com/originals/f6/8b/04/f68b0480335f4f7f5ca00d1b9cd0bf56.png');
+    return fetch('http://localhost:3000/generate.json')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({ imgURL: responseJson.url });
+        return responseJson.url;
+      })
+      .catch((error) => {
+        console.error(error);
+        return null;
+      });
   }
+
 } //end of Meme
-//{styles.img}
-//resizeMode='contain'
-//'../../src/img/piggy.jpg')}/>
+
   //Styles
   let styles = StyleSheet.create({
     /////////////////////////

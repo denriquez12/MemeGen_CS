@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import MainMeme from './src/components/MainMeme';
-//import GenSave from './src/components/GenSave';
 import Nav from './src/components/Nav';
 import {
   AppRegistry,
@@ -10,9 +9,6 @@ import {
 } from 'react-native';
 
 export default class MemeGen_CS extends Component {
-  //construct(){
-    //this.state = {imgURL: 'https://s-media-cache-ak0.pinimg.com/originals/f6/8b/04/f68b0480335f4f7f5ca00d1b9cd0bf56.png'};
-  //}
   render() {
     return (
       <View style={styles.container}>
@@ -24,9 +20,6 @@ export default class MemeGen_CS extends Component {
   }
   //Start of helper functions
   displayTitle() {
-  //  this.state = {imgURL: 'https://s-media-cache-ak0.pinimg.com/originals/f6/8b/04/f68b0480335f4f7f5ca00d1b9cd0bf56.png'};
-    //<GenSave ref='img' />
-  //  this.setState({ imgURL: () => this.refs.img.getImgUrl()});
     return (
       <View style={styles.titleWrapper}>
         <Text style={styles.title}>
@@ -36,7 +29,7 @@ export default class MemeGen_CS extends Component {
     );
   }
 } //End of Main class
-//<MainMeme />
+
 //Styles
 let styles = StyleSheet.create({
   /////////////////////////
