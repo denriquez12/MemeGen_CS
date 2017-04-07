@@ -83,6 +83,7 @@ export default class MainMeme extends Component {
     /////////////////////////
     mainImgWrapper: { //Blue
       flex: 7,
+      flexWrap: 'wrap',
       alignItems: 'center',
       justifyContent: 'flex-start'
     },
