@@ -11,7 +11,8 @@ import {
 export default class MainMeme extends Component {
   constructor(props){
     super(props)
-    this.state = {imgURL: 'https://s-media-cache-ak0.pinimg.com/originals/f6/8b/04/f68b0480335f4f7f5ca00d1b9cd0bf56.png'};
+    this.state = {imgURL: 'https://s-media-cache-ak0.pinimg.com/originals/f6/8b/04/f68b0480335f4f7f5ca00d1b9cd0bf56.png',
+                  phrase: ''};
   }
   render() {
     return (
@@ -24,7 +25,20 @@ export default class MainMeme extends Component {
       </View>
     );
   }
-
+  ////MAIN IMG
+  startMemeImg() {
+    let img = this.state.imgURL;
+    return (
+       <View style={styles.mainImgWrapper}>
+          <Image style={styles.img}
+            resizeMode='stretch'
+            source={{uri: this.state.imgURL}} />
+              <Text style={styles.phrase}>
+                {this.state.phrase}
+              </Text>
+      </View>);
+  }
+  /////
   //ADDED
   startGenBttn() {
     return (
@@ -47,21 +61,12 @@ export default class MainMeme extends Component {
   saveAction() {
     console.log('Save Was Pressed')
   }
-  ////
-  startMemeImg() {
-    let img = this.state.imgURL;
-    return (
-       <View style={styles.mainImgWrapper}>
-          <Image style={styles.img}
-            source={{uri: this.state.imgURL}}/>
-      </View>);
-  }
   fetchImg() {
     return fetch('http://localhost:3000/generate.json')
       .then((response) => response.json())
       .then((responseJson) => {
-        this.setState({ imgURL: responseJson.url });
-        return responseJson.url;
+        this.setState({ imgURL: responseJson.url, phrase: responseJson.phrase });
+      //  return responseJson.url;
       })
       .catch((error) => {
         console.error(error);
@@ -79,11 +84,12 @@ export default class MainMeme extends Component {
     mainImgWrapper: { //Blue
       flex: 7,
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'flex-start'
     },
     img: {
       height: 340,
-      width: 340,
+      width: 350,
+      position: 'absolute',
       borderWidth: 3,
       borderRadius: 8,
       alignItems: 'center',
@@ -111,6 +117,17 @@ export default class MainMeme extends Component {
     //////////////////////////
     textStyle: {
       color: 'white'
-    }
-
+    },
+    phrase: {
+      marginTop: 8,
+      textDecorationStyle: 'solid',
+      textDecorationColor: 'black',
+      fontFamily: 'HelveticaNeue-CondensedBold',
+      fontSize: 24,
+      backgroundColor: 'rgba(0,0,0,.25)',
+      textShadowColor: 'black',
+      textShadowOffset: {width: 2, height: 2},
+      textShadowRadius: 1,
+      color: 'white'
+    },
   });
