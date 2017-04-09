@@ -31,7 +31,7 @@ export default class MainMeme extends Component {
     return (
        <View style={styles.mainImgWrapper}>
           <Image style={styles.img}
-            resizeMode='stretch'
+            resizeMode='contain'
             source={{uri: this.state.imgURL}} />
               <Text style={styles.phrase}>
                 {this.state.phrase}
@@ -51,15 +51,12 @@ export default class MainMeme extends Component {
   }
   startSaveBttn() {
     return (
-      <TouchableOpacity onPress={() => this.saveAction()} style={styles.actionBttn}>
+      <TouchableOpacity onPress={() => this.saveMeme()} style={styles.actionBttn}>
         <Text style={styles.textStyle}>
           SAVE
         </Text>
       </TouchableOpacity>
     );
-  }
-  saveAction() {
-    console.log('Save Was Pressed')
   }
   fetchImg() {
     return fetch('http://localhost:3000/generate.json')
@@ -67,6 +64,17 @@ export default class MainMeme extends Component {
       .then((responseJson) => {
         this.setState({ imgURL: responseJson.url, phrase: responseJson.phrase });
       //  return responseJson.url;
+      })
+      .catch((error) => {
+        console.error(error);
+        return null;
+      });
+  }
+  saveMeme() {
+    return fetch('http://localhost:3000/save_meme.json')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        //Add status check here using responseJson
       })
       .catch((error) => {
         console.error(error);
@@ -94,7 +102,8 @@ export default class MainMeme extends Component {
       borderWidth: 3,
       borderRadius: 8,
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      backgroundColor: 'black'
     },
     genSaveBttnsWrapper: {  //Red
       flex: 3,

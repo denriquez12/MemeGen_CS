@@ -37,7 +37,7 @@ let styles = StyleSheet.create({
   /////////////////////////
   container: {
     flex: 1,
-    backgroundColor: '#D7CEC7', //'#007399', //light blue
+    backgroundColor: '#D7CEC7' //'#007399', //light blue
   },
   titleWrapper: { //Green
     flex: 1,

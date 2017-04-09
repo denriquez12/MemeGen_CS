@@ -32,14 +32,18 @@ export default class Nav extends Component {
   }
   startMyMemeBttn(){
     return(
-      <TouchableOpacity style={styles.myMemeBttn}>
+      <TouchableOpacity style={styles.myMemeBttn} onPress={this.goToMyMeme}>
         <Text style={styles.text}>
           MyMeme
         </Text>
       </TouchableOpacity>
     );
   }
-}
+  goToMyMeme = () => {
+
+  }
+
+}//End of Main
 
 let styles = StyleSheet.create({
   /////////////////////////

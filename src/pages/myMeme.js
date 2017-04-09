@@ -11,7 +11,7 @@ export default class MyMeme extends Component {
   render() {
     return (
       <View style={styles.container}>
-      
+
         <Nav />
       </View>
     );
@@ -21,6 +21,9 @@ export default class MyMeme extends Component {
     /////////////////////////
     ///// Section Styles ////
     /////////////////////////
-
+    container: {
+      flex: 1,
+      backgroundColor: '#D7CEC7'
+    }
 
   });
