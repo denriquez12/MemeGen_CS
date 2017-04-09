@@ -4,6 +4,7 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
+  Navigator,
   View
 } from 'react-native';
 
@@ -12,7 +13,7 @@ export default class MyMeme extends Component {
     return (
       <View style={styles.container}>
 
-        <Nav />
+
       </View>
     );
   }
