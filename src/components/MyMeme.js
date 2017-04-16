@@ -1,7 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 //import Nav from './Nav';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   Image,
@@ -30,9 +29,6 @@ class MyMeme extends Component {
       .then((responseJson) => {
 
         this.setState({dataSource: ds.cloneWithRows(responseJson.memes)});
-        console.log(responseJson.memes);
-      //  return responseJson.url;
-
       })
       .catch((error) => {
         console.error(error);
@@ -52,7 +48,7 @@ class MyMeme extends Component {
                 <Image style={styles.img}
                   resizeMode='contain'
                   source={{uri: rowData.image_url}} />
-                <View style={{paddingLeft: 5}}>
+                <View style={styles.phraseWrapper}>
                   <Text onPress={() => {
                       this.navigate('ViewMemePage', {phrase: rowData.text, url: rowData.image_url});
                     }
@@ -114,11 +110,17 @@ class MyMeme extends Component {
       alignItems: 'center'
     },
     img: {
+      flex:1,
       height: 100,
       width: 100,
       marginTop: 10,
       marginBottom: 10,
       backgroundColor: 'black'
+    },
+    phraseWrapper: {
+      flex: 2,
+      paddingLeft: 5,
+      flexWrap: 'wrap'
     },
     /////////////////////////
     //// Button styles //////
