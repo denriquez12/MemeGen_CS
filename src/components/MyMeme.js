@@ -4,6 +4,7 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
+  Image,
   ListView,
   TouchableOpacity,
   Navigator,
@@ -19,30 +20,39 @@ class MyMeme extends Component {
     }
   }
 
-componentDidMount(){
-  fetch('http://localhost:3000/return_all.json')
-    .then((response) => response.json())
-    .then((responseJson) => {
+  componentDidMount(){
+    fetch('http://localhost:3000/return_all.json')
+      .then((response) => response.json())
+      .then((responseJson) => {
 
-      this.setState({dataSource: ds.cloneWithRows(responseJson.memes)})
-      console.log(responseJson.memes);
-    //  return responseJson.url;
+        this.setState({dataSource: ds.cloneWithRows(responseJson.memes)});
+        console.log(responseJson.memes);
+      //  return responseJson.url;
 
-    })
-    .catch((error) => {
-      console.error(error);
-      return null;
-    });
-}
+      })
+      .catch((error) => {
+        console.error(error);
+        return null;
+      });
+    }
 
 
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.listWrapper}>
-          <ListView
+          <ListView enableEmptySections={true}
             dataSource={this.state.dataSource}
-            renderRow={(rowData) => <Text>Hello</Text>}
+            renderRow={(rowData) =>
+              <View style={styles.listSectionWrapper}>
+                <Image style={styles.img}
+                  resizeMode='contain'
+                  source={{uri: rowData.image_url}} />
+                <View style={{paddingLeft: 5}}>
+                  <Text style={styles.listText}>{rowData.text}</Text>
+                </View>
+              </View>
+            }
           />
         </View>
         <View style={styles.navBttnsWrapper}>
@@ -84,16 +94,23 @@ componentDidMount(){
     listWrapper: {
       flex: 12,
       paddingTop: 22,
-      paddingLeft: 4
+      paddingLeft: 10
     },
     navBttnsWrapper: {  //Yellow
       flexDirection: 'row',
       flex: 1,
       alignItems: 'stretch',
     },
+    listSectionWrapper: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      alignItems: 'center'
+    },
     img: {
-      height: 40,
-      width: 40,
+      height: 100,
+      width: 100,
+      marginTop: 10,
+      marginBottom: 10,
       backgroundColor: 'black'
     },
     /////////////////////////
@@ -114,6 +131,9 @@ componentDidMount(){
       backgroundColor: '#C09F80',//#565656',//#C09F80',
       alignItems: 'center',
       justifyContent: 'center'
+    },
+    listText: {
+      textDecorationLine: 'underline'
     },
     text: {
       color: 'white'
