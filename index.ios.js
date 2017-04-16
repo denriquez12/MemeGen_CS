@@ -3,6 +3,7 @@ import MainMeme from './src/components/MainMeme';
 //import Nav from './src/components/Nav';
 import MyMeme from './src/components/MyMeme';
 import Home from './src/components/Home';
+import ViewMeme from './src/components/ViewMeme';
 import {
   AppRegistry,
   StyleSheet,
@@ -22,7 +23,10 @@ export default class MemeGen_CS extends Component {
       return <Home navigator={navigator} />
     } else if (route.name === 'MyMemePage') {
       return <MyMeme navigator={navigator} />
+    }else if (route.name === 'ViewMemePage') {
+      return <ViewMeme navigator={navigator} data={route.data}/>
     }
+
   }
 
   render() {

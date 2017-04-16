@@ -19,7 +19,11 @@ class MyMeme extends Component {
       dataSource: ds.cloneWithRows([])
     }
   }
-
+  navigate(name, data){
+    this.props.navigator.push({
+      name, data
+    })
+  }
   componentDidMount(){
     fetch('http://localhost:3000/return_all.json')
       .then((response) => response.json())
@@ -49,7 +53,10 @@ class MyMeme extends Component {
                   resizeMode='contain'
                   source={{uri: rowData.image_url}} />
                 <View style={{paddingLeft: 5}}>
-                  <Text style={styles.listText}>{rowData.text}</Text>
+                  <Text onPress={() => {
+                      this.navigate('ViewMemePage', {phrase: rowData.text, url: rowData.image_url});
+                    }
+                  } style={styles.listText}>{rowData.text}</Text>
                 </View>
               </View>
             }
