@@ -1,33 +1,39 @@
 import React, { Component } from 'react';
 import MainMeme from './src/components/MainMeme';
-import Nav from './src/components/Nav';
+//import Nav from './src/components/Nav';
+import MyMeme from './src/components/MyMeme';
+import Home from './src/components/Home';
 import {
   AppRegistry,
   StyleSheet,
   Text,
+  Navigator,
   View
 } from 'react-native';
 
 export default class MemeGen_CS extends Component {
+  constructor(){
+    super()
+    this.renderScene = this.renderScene.bind(this)
+  }
+
+  renderScene(route, navigator){
+    if (route.name === 'HomePage'){
+      return <Home navigator={navigator} />
+    } else if (route.name === 'MyMemePage') {
+      return <MyMeme navigator={navigator} />
+    }
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        {this.displayTitle()}
-        <MainMeme />
-        <Nav />
-      </View>
+      <Navigator
+        initialRoute={{name: 'HomePage'}}
+        renderScene={this.renderScene}
+      />
     );
   }
   //Start of helper functions
-  displayTitle() {
-    return (
-      <View style={styles.titleWrapper}>
-        <Text style={styles.title}>
-          MEME GENERATOR
-        </Text>
-      </View>
-    );
-  }
 } //End of Main class
 
 //Styles

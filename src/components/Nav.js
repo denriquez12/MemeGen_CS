@@ -8,6 +8,10 @@ import {
 } from 'react-native';
 
 export default class Nav extends Component {
+  constructor(props){
+    super(props)
+  }
+
   render() {
     return (
       this.startNav()
@@ -32,15 +36,12 @@ export default class Nav extends Component {
   }
   startMyMemeBttn(){
     return(
-      <TouchableOpacity style={styles.myMemeBttn} onPress={this.goToMyMeme}>
+      <TouchableOpacity style={styles.myMemeBttn} onPress={this.props.navigate('myMemePage')}>
         <Text style={styles.text}>
           MyMeme
         </Text>
       </TouchableOpacity>
     );
-  }
-  goToMyMeme = () => {
-
   }
 
 }//End of Main
